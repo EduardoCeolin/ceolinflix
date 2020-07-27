@@ -20,8 +20,8 @@
     # Executar
     $ npm start
 
-<h3>🖼 Layout</h3>
-<img src="./src/assets/Layout.png">
+<h3>🖼 Demo</h3>
+<a href='https://ceolinflix.vercel.app/'>https://ceolinflix.vercel.app/</a>
 
 <h3>📝 Licença</h3>
 <p>O projeto se encontra sob licença MIT. Para mais detalhes, acesse <a href='LICENSE'>license<a>.</p>
