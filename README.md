@@ -1,5 +1,5 @@
-<p align='center'><img width='200' src="./src/assets/img/Logo.png"/></p>
-<h1 align='center'>Ceolinflix - #ImersaoReact</h1>
+<p align='center'><img width='200' src="./src/assets/ceolinflix.png"/></p>
+<h1 align='center'>Ceolinflix - ImersaoReact</h1>
 <p align='center'>
 <img src="https://img.shields.io/github/repo-size/EduardoCeolin/ceolinflix">
 <img src="https://img.shields.io/github/last-commit/EduardoCeolin/ceolinflix">
@@ -21,7 +21,7 @@
     $ npm start
 
 <h3>🖼 Layout</h3>
-<img src="./src/assets/img/Layout.png">
+<img src="./src/assets/Layout.png">
 
 <h3>📝 Licença</h3>
 <p>O projeto se encontra sob licença MIT. Para mais detalhes, acesse <a href='LICENSE'>license<a>.</p>
