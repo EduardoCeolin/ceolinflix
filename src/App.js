@@ -4,6 +4,9 @@ import Footer from "./components/Footer";
 import BannerMain from "./components/BannerMain";
 import Carousel from "./components/Carousel";
 
+import { Carousel as CauroselCustomized } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import dadosIniciais from "./data/db.json";
 
 function App() {
@@ -11,13 +14,19 @@ function App() {
     <div style={{ background: "#141414" }}>
       <Menu />
 
-      <BannerMain
-        videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
-        url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={
-          "O que é Front-end? Trabalhando na área os termos HTML, CSS e JavaScript fazem parte da rotina das desenvolvedoras e desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"
-        }
-      />
+      <CauroselCustomized emulateTouch={true} showArrows={true} autoPlay={true}>
+        {dadosIniciais.categorias[Math.floor(Math.random() * 5)].videos.map(
+          (video) => {
+            return (
+              <BannerMain
+                videoTitle={video.titulo}
+                url={video.url}
+                videoDescription={video.descricao}
+              />
+            );
+          }
+        )}
+      </CauroselCustomized>
 
       <Carousel ignoreFirstVideo category={dadosIniciais.categorias[0]} />
 
