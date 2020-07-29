@@ -1,15 +1,16 @@
 import React from "react";
-import Menu from "./components/Menu";
-import Footer from "./components/Footer";
-import BannerMain from "./components/BannerMain";
-import Carousel from "./components/Carousel";
+
+import Menu from "../../components/Menu";
+import BannerMain from "../../components/BannerMain";
+import Carousel from "../../components/Carousel";
+import Footer from "../../components/Footer";
 
 import { Carousel as CauroselCustomized } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-import dadosIniciais from "./data/db.json";
+import dadosIniciais from "../../data/db.json";
 
-function App() {
+function Home() {
   return (
     <div style={{ background: "#141414" }}>
       <Menu />
@@ -45,4 +46,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
