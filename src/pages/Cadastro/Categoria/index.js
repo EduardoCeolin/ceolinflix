@@ -27,11 +27,9 @@ function CadastroCategoria() {
   }
 
   useEffect(() => {
-    if (window.location.href.includes('localhost')) {
-      const URL = 'http://localhost:8080/categorias';
-    } else {
-      const URL = 'https://ceolinflix.herokuapp.com/categorias';
-    }
+    const URL = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://ceolinflix.herokuapp.com/categorias';
 
     fetch(URL).then(async (response) => {
       if (response.ok) {
