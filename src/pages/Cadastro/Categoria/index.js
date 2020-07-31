@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import PageDefault from "../../../components/PageDefault";
-import FormField from "../../../components/FormField";
+import PageDefault from '../../../components/PageDefault';
+import FormField from '../../../components/FormField';
+import Button from '../../../components/Button';
 
 function CadastroCategoria() {
   const valoresIniciais = {
-    nome: "",
-    descricao: "",
-    cor: "",
+    nome: '',
+    descricao: '',
+    cor: '',
   };
   const [categorias, setCategorias] = useState([]);
   const [values, setValues] = useState(valoresIniciais);
@@ -22,12 +23,23 @@ function CadastroCategoria() {
 
   function handleChange(event) {
     const { value } = event.target;
-    setValue(event.target.getAttribute("name"), value);
+    setValue(event.target.getAttribute('name'), value);
   }
+
+  useEffect(() => {
+    const URL = 'http://localhost:8080/categorias';
+
+    fetch(URL).then(async (response) => {
+      setCategorias([...(await response.json())]);
+    });
+  });
 
   return (
     <PageDefault>
-      <h1>Cadastro de Categoria: {values.nome}</h1>
+      <h1>
+        Cadastro de Categoria:
+        {values.nome}
+      </h1>
 
       <form
         onSubmit={function handleSubmit(event) {
@@ -60,7 +72,7 @@ function CadastroCategoria() {
           value={values.cor}
           onChange={handleChange}
         />
-        <button>Cadastrar</button>
+        <Button>Cadastrar</Button>
       </form>
 
       <ul>

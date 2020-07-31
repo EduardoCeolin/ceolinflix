@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
-import Menu from "../../components/Menu";
-import BannerMain from "../../components/BannerMain";
-import Carousel from "../../components/Carousel";
-import Footer from "../../components/Footer";
+import { Carousel as CauroselCustomized } from 'react-responsive-carousel';
+import Menu from '../../components/Menu';
+import BannerMain from '../../components/BannerMain';
+import Carousel from '../../components/Carousel';
+import Footer from '../../components/Footer';
 
-import { Carousel as CauroselCustomized } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import dadosIniciais from "../../data/db.json";
+import dadosIniciais from '../../../db.json';
 
 function Home() {
   return (
-    <div style={{ background: "#141414" }}>
+    <div style={{ background: '#141414' }}>
       <Menu />
 
-      <CauroselCustomized emulateTouch={true} showArrows={true} autoPlay={true}>
+      <CauroselCustomized emulateTouch showArrows autoPlay>
         {dadosIniciais.categorias[Math.floor(Math.random() * 5)].videos.map(
           (video) => {
             return (
