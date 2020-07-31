@@ -1,8 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FooterBase } from "./styles";
 
 import Logo from "../../assets/ceolinflix.png";
-import { Link } from "react-router-dom";
 
 function Footer() {
   return (
