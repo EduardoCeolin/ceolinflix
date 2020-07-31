@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import dadosIniciais from '../../../db.json';
+import dadosIniciais from '../../data/dados_inciais.json';
 
 function Home() {
   return (
