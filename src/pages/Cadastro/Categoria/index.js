@@ -27,14 +27,21 @@ function CadastroCategoria() {
   }
 
   useEffect(() => {
-    const URL = window.location.hostname.includes('localhost')
-      ? 'http://localhost:8080/categorias'
-      : 'https://ceolinflix.herokuapp.com/categorias';
+    if (window.location.href.includes('localhost')) {
+      const URL = 'http://localhost:8080/categorias';
+      //   ? 'http://localhost:8080/categorias'
+      //   : 'https://ceolinflix.herokuapp.com/categorias';
 
-    fetch(URL).then(async (response) => {
-      setCategorias([...(await response.json())]);
-    });
-  });
+      fetch(URL).then(async (response) => {
+        if (response.ok) {
+          const categoriass = await response.json();
+          setCategorias(categoriass);
+          return;
+        }
+        throw new Error('Não foi possível pegar os dados');
+      });
+    }
+  }, []);
 
   return (
     <PageDefault>
@@ -46,6 +53,7 @@ function CadastroCategoria() {
       <form
         onSubmit={function handleSubmit(event) {
           event.preventDefault();
+
           setCategorias([...categorias, values]);
 
           setValues(valoresIniciais);
@@ -75,11 +83,18 @@ function CadastroCategoria() {
           onChange={handleChange}
         />
         <Button>Cadastrar</Button>
+
+        {categorias.length === 0 && (
+          <div>
+            <p />
+            Loading...
+          </div>
+        )}
       </form>
 
       <ul>
-        {categorias.map((categoria, indice) => {
-          return <li key={`${categoria}${indice}`}>{categoria.nome}</li>;
+        {categorias.map((categoria) => {
+          return <li key={`${categoria.id}`}>{categoria.titulo}</li>;
         })}
       </ul>
 
