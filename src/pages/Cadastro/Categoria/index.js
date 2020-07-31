@@ -29,19 +29,18 @@ function CadastroCategoria() {
   useEffect(() => {
     if (window.location.href.includes('localhost')) {
       const URL = 'http://localhost:8080/categorias';
-    }else{
-        const URL = 'https://ceolinflix.herokuapp.com/categorias';
+    } else {
+      const URL = 'https://ceolinflix.herokuapp.com/categorias';
     }
 
-      fetch(URL).then(async (response) => {
-        if (response.ok) {
-          const categoriass = await response.json();
-          setCategorias(categoriass);
-          return;
-        }
-        throw new Error('Não foi possível pegar os dados');
-      });
-    }
+    fetch(URL).then(async (response) => {
+      if (response.ok) {
+        const categoriass = await response.json();
+        setCategorias(categoriass);
+        return;
+      }
+      throw new Error('Não foi possível pegar os dados');
+    });
   }, []);
 
   return (
