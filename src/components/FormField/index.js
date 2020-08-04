@@ -71,21 +71,60 @@ const Input = styled.input`
   }}
 `;
 
-function FormField({ label, name, type, value, onChange }) {
+const Select = styled.select`
+  background: #53585d;
+  color: #f5f5f5;
+  display: block;
+  width: 100%;
+  height: 57px;
+  font-size: 18px;
+
+  outline: 0;
+  border: 0;
+  border-top: 4px solid transparent;
+
+  padding: 16px 16px;
+  margin-bottom: 45px;
+
+  resize: none;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+`;
+
+function FormField({ label, name, type, value, onChange, suggestions }) {
+  const fieldId = `id_${name}`;
   const isTypeTextArea = type === 'textarea';
   const tag = isTypeTextArea ? 'textarea' : 'input';
 
+  const hasValue = Boolean(value.length);
+  const hasSuggestions = Boolean(suggestions.length);
+
   return (
     <FormFieldWrapper>
-      <Label>
+      <Label htmlFor={fieldId}>
         <Input
           as={tag}
           type={type}
           value={value}
           name={name}
+          hasValue={hasValue}
           onChange={onChange}
+          autoComplete={hasSuggestions ? 'off' : 'on'}
+          list={`suggestionFor_${fieldId}`}
         />
         <Label.Text>{label}</Label.Text>
+        {hasSuggestions && (
+          <datalist id={`suggestionFor_${fieldId}`}>
+            {suggestions.map((suggestion) => (
+              <option
+                key={`suggestionFor_${fieldId}option${suggestion}`}
+                value={suggestion}
+              >
+                {suggestion}
+              </option>
+            ))}
+          </datalist>
+        )}
       </Label>
     </FormFieldWrapper>
   );
@@ -94,6 +133,8 @@ function FormField({ label, name, type, value, onChange }) {
 FormField.defaultProps = {
   type: 'text',
   value: '',
+  onChange: () => {},
+  suggestions: [],
 };
 
 FormField.propTypes = {
@@ -101,7 +142,8 @@ FormField.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
   value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+  suggestions: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default FormField;

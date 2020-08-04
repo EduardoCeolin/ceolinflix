@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
+
+import URL from '../../../config';
 
 function CadastroCategoria() {
   const valoresIniciais = {
@@ -11,30 +14,16 @@ function CadastroCategoria() {
     descricao: '',
     cor: '',
   };
+
+  const { handleChange, values, clearForm } = useForm(valoresIniciais);
+
   const [categorias, setCategorias] = useState([]);
-  const [values, setValues] = useState(valoresIniciais);
-
-  function setValue(key, value) {
-    setValues({
-      ...values,
-      [key]: value,
-    });
-  }
-
-  function handleChange(event) {
-    const { value } = event.target;
-    setValue(event.target.getAttribute('name'), value);
-  }
 
   useEffect(() => {
-    const URL = window.location.hostname.includes('localhost')
-      ? 'http://localhost:8080/categorias'
-      : 'https://ceolinflix.herokuapp.com/categorias';
-
-    fetch(URL).then(async (response) => {
+    fetch(`${URL}/categorias`).then(async (response) => {
       if (response.ok) {
-        const categoriass = await response.json();
-        setCategorias(categoriass);
+        const categories = await response.json();
+        setCategorias(categories);
         return;
       }
       throw new Error('Não foi possível pegar os dados');
@@ -54,14 +43,14 @@ function CadastroCategoria() {
 
           setCategorias([...categorias, values]);
 
-          setValues(valoresIniciais);
+          clearForm(valoresIniciais);
         }}
       >
         <FormField
           label="Nome da Categoria:"
-          name="nome"
+          name="titulo"
           type="text"
-          value={values.nome}
+          value={values.titulo}
           onChange={handleChange}
         />
 
